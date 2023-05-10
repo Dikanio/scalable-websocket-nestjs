@@ -1,0 +1,54 @@
+version : '3'
+networks:
+  test-network:
+    external: true
+services:    
+    server-1:
+        image: chat-service
+        container_name: server-1
+        environment:
+            - SERVER_PORT=3001
+            - APP_ID=1111
+            - REDIS_HOST=redis
+        ports:
+          - "3001:3001"
+        networks:
+         - test-network
+    server-2:
+        image: chat-service
+        container_name: server-2
+        environment:
+            - SERVER_PORT=3002
+            - APP_ID=2222
+            - REDIS_HOST=redis
+        ports:
+          - "3002:3002"
+        networks:
+         - test-network
+    server-3:
+        image: chat-service
+        container_name: server-3
+        environment:
+            - SERVER_PORT=3003
+            - APP_ID=3333
+            - REDIS_HOST=redis
+        ports:
+          - "3003:3003"
+        networks:
+         - test-network
+    server-4:
+        image: chat-service
+        container_name: server-4
+        environment:
+            - SERVER_PORT=3004
+            - APP_ID=4444
+            - REDIS_HOST=redis
+        ports:
+          - "3004:3004"
+        networks:
+         - test-network
+    redis:
+        image: redis
+        networks:
+         - test-network
+        
